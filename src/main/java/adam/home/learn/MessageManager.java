@@ -3,7 +3,7 @@ package adam.home.learn;
 import java.sql.Connection;
 import java.util.Scanner;
 
-public class App {
+public class MessageManager {
 	
 	public static void main(String[] args) {
 		
