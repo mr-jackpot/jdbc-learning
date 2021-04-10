@@ -9,10 +9,15 @@ public class MessageManager {
 		
 		System.out.println("Please enter the database, username, & password: ");
 		Scanner input = new Scanner(System.in);
-		SQLDatabase sandbox = new SQLDatabase(input.nextLine(), input.nextLine(), input.nextLine());
-		input.close();
+		
+		SQLDatabase sandbox = new SQLDatabase();
+		sandbox.setConnectionDetails(input.nextLine(), input.nextLine(), input.nextLine());
+			
 		Connection conn = sandbox.establishConnection();
 		System.out.println("INFO - Active SQL Server Connection: " + sandbox.connectionStatus(conn));
+		
+		BankAccount account = new BankAccount();
+		account.OpenAccount(input, conn);
 
 	}
 }
