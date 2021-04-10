@@ -1,20 +1,15 @@
 package adam.home.learn;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
 public class BankAccount {
 
 	final String BANK = "BANK OF SCOTLAND";
-	String fullName;
-	String country; 
-	String city;
-	double balance;
-	
-	public BankAccount(String name, String location, String town, double openingBalance) {
-
-		fullName = name;
-		country = location;
-		city = town;
-		balance = openingBalance;
-	}
+	final int BALANCE = 0;
 	
 	
 	public void depositMoney() {
@@ -35,6 +30,26 @@ public class BankAccount {
 	
 	public void closeAccount() {
 		
+	}
+	
+	public void OpenAccount(Scanner s, Connection conn) {
+		
+		System.out.println("Please enter your name:");
+		String name = s.nextLine();
+		System.out.println("Please enter the country that you live in:");
+		String country = s.nextLine();
+		System.out.println("Please enter the city that you live in:");
+		String city = s.nextLine();
+		
+		String q = "INSERT INTO accounts (name, country, city, bank, balance) VALUES ('"+name.toUpperCase()+"', '"+country.toUpperCase()+"', '"+city.toUpperCase()+"','"+BANK+"','"+BALANCE+"');";
+
+		try (Statement stmt = conn.createStatement()){
+			stmt.execute(q);
+
+		} catch (SQLException e) {
+			System.out.println("ERROR - SQL statement execution FAILED!");
+			e.printStackTrace();
+		}
 	}
 	
 	

@@ -2,9 +2,7 @@ package adam.home.learn;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class SQLDatabase {
 	
@@ -12,11 +10,6 @@ public class SQLDatabase {
 	String username;
 	String password;
 	
-	public SQLDatabase(String dbName, String dbUser, String dbPassword) {
-		database = dbName;
-		username = dbUser;
-		password = dbPassword;
-	}
 	
 	// Connect to database. Use database name input to connect to SQL server.
 	public Connection establishConnection() {
@@ -48,5 +41,11 @@ public class SQLDatabase {
 		} catch (SQLException e) {}
 		
 		return false;
+	}
+	
+	public void setConnectionDetails(String dbName, String dbUser, String dbPassword) {
+		database = dbName;
+		username = dbUser;
+		password = dbPassword;
 	}
 }
